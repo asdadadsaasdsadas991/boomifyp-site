@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BOOMIFYP | Minecraft Towny</title>
-    survivalzes="32x32" href="favicon.png">
+    
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Montserrat:wght@300;600;900&display=swap" rel="stylesheet">
     <style>
@@ -63,9 +64,9 @@
         /* EKİP */
         .team-container { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
         .member { text-align: center; }
-        .member img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); padding: 5px; transition: 0.4s; background: #111; }
+        .member img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); padding: 5px; transition: 0.4s; background: #111; object-fit: cover; }
         .member:hover img { transform: rotate(15deg) scale(1.1); box-shadow: 0 0 20px var(--gold); }
-        .rank { font-size: 0.7rem; background: var(--gold); color: #000; padding: 3px 12px; border-radius: 50px; font-weight: 900; margin-top: 10px; display: inline-block; }
+        .rank { font-size: 0.7rem; background: var(--gold); color: #000; padding: 3px 12px; border-radius: 50px; font-weight: 900; margin-top: 10px; display: inline-block; letter-spacing: 1px; }
 
         /* MODAL */
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
@@ -95,7 +96,7 @@
 
 <section class="hero">
     <img src="image_3944db.png" alt="BOOMIFYP" class="hero-img">
-    <h1 style="margin-top: 20px; font-weight: 300;">PREMIUM <b style="color: var(--gold);">TOWNY</b></h1>
+    <h1 style="margin-top: 20px; font-weight: 300;">PREMIUM <b style="color: var(--gold);">SURVIVAL</b></h1>
     <button class="ip-copy" onclick="copyIP()">OYNA.BOOMIFYP.COM</button>
     <p style="margin-top: 15px; color: #888;"></p>
 </section>
@@ -213,6 +214,11 @@
             <img src="https://cdn.discordapp.com/attachments/1484595002389561438/1505296739106689254/60EF9287-7762-4BB8-BF70-3268A5006887.png?ex=6a0a1c55&is=6a08cad5&hm=18127c8047fde965fae6e06eaed3d3f6a97557c36992f8f64763dc0336ee9250&" alt="Admin">
             <p style="margin-top: 10px; font-weight: 800;">xGHURx</p>
             <span class="rank" style="background: #ff5555; color: #fff;">ADMİN</span>
+        </div>
+        <div class="member">
+            <img src="https://imagizer.imageshack.com/img922/5536/SQlqoh.jpg" alt="Builder & Admin">
+            <p style="margin-top: 10px; font-weight: 800;">CYKLX</p>
+            <span class="rank" style="background: #00aaaa; color: #fff;">BUILDER & ADMIN</span>
         </div>
     </div>
 </section>

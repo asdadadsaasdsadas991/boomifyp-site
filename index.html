@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOMIFYP | Efsanevi Survival</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Montserrat:wght@300;600;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #ffb800;
+            --gold-glow: rgba(255, 184, 0, 0.4);
+            --discord: #5865F2;
+            --bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: var(--bg); color: #fff; font-family: 'Montserrat', sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+
+        /* ARKA PLAN */
+        .stars-bg { position: fixed; top: 0; width: 100%; height: 100%; z-index: -1; background: radial-gradient(circle at 50% 10%, #1a1500 0%, #050505 100%); }
+
+        /* NAV */
+        nav { position: fixed; top: 0; width: 100%; padding: 25px 10%; display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(15px); z-index: 1000; border-bottom: 1px solid var(--border); }
+        .nav-logo { font-family: 'Orbitron'; font-weight: 900; font-size: 1.6rem; color: var(--gold); text-shadow: 0 0 10px var(--gold-glow); text-decoration: none; }
+        .nav-links a { color: #fff; text-decoration: none; margin-left: 25px; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px; transition: 0.3s; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* HERO */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+        .hero-img { width: 450px; filter: drop-shadow(0 0 30px var(--gold-glow)); animation: float 5s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        
+        .ip-copy { background: var(--gold-glow); border: 2px solid var(--gold); color: var(--gold); padding: 15px 40px; border-radius: 50px; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.4s; margin-top: 25px; }
+        .ip-copy:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--gold); background: var(--gold); color: #000; }
+
+        /* SECTIONS */
+        section { padding: 100px 10%; }
+        .title { font-family: 'Orbitron'; font-size: 2.5rem; text-align: center; margin-bottom: 60px; letter-spacing: 5px; color: var(--gold); }
+
+        /* MARKET */
+        .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 40px; border-radius: 25px; text-align: center; transition: 0.4s; backdrop-filter: blur(5px); position: relative; overflow: hidden; }
+        .card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 10px 40px rgba(255, 184, 0, 0.1); }
+        .card h2 { font-family: 'Orbitron'; margin-bottom: 15px; }
+        .price { font-size: 3rem; font-weight: 900; color: var(--gold); margin-bottom: 20px; }
+        .card ul { list-style: none; text-align: left; margin-bottom: 30px; }
+        .card ul li { margin-bottom: 10px; color: #bbb; display: flex; align-items: center; }
+        .card ul li::before { content: '◈'; color: var(--gold); margin-right: 10px; font-size: 0.8rem; }
+        
+        .buy-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; background: var(--gold); color: #000; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.3s; }
+        .buy-btn:hover { letter-spacing: 2px; background: #fff; }
+
+        /* KURALLAR */
+        .rules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .rule-box { background: rgba(255,255,255,0.01); padding: 25px; border-left: 4px solid var(--gold); border-radius: 5px; transition: 0.3s; }
+        .rule-box:hover { background: rgba(255, 184, 0, 0.05); transform: translateX(10px); }
+        .rule-box h3 { color: var(--gold); margin-bottom: 10px; font-family: 'Orbitron'; font-size: 1rem; }
+
+        /* EKİP */
+        .team-container { display: flex; justify-content: center; gap: 50px; flex-wrap: wrap; }
+        .member { text-align: center; }
+        .member img { width: 130px; height: 130px; border-radius: 50%; border: 3px solid var(--gold); padding: 5px; transition: 0.4s; background: #111; }
+        .member:hover img { transform: rotate(15deg) scale(1.1); box-shadow: 0 0 20px var(--gold); }
+        .rank { font-size: 0.7rem; background: var(--gold); color: #000; padding: 3px 12px; border-radius: 50px; font-weight: 900; margin-top: 10px; display: inline-block; }
+
+        /* MODAL (DISCORD ODAKLI) */
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 2000; align-items: center; justify-content: center; }
+        .modal-content { background: #0a0a0a; border: 2px solid var(--discord); border-radius: 30px; padding: 45px; max-width: 450px; width: 90%; text-align: center; animation: zoom 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28); }
+        @keyframes zoom { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .dc-user-box { background: rgba(88,101,242,0.1); border: 1px dashed var(--discord); padding: 15px; border-radius: 15px; margin: 20px 0; }
+        .dc-btn { background: var(--discord); color: #fff; text-decoration: none; padding: 15px; border-radius: 12px; display: block; font-weight: 800; font-family: 'Orbitron'; transition: 0.3s; margin-top: 20px; }
+        .dc-btn:hover { box-shadow: 0 0 20px var(--discord); transform: scale(1.05); }
+
+        footer { text-align: center; padding: 50px; border-top: 1px solid var(--border); color: #444; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<nav>
+    <a href="#" class="nav-logo">BOOMIFYP</a>
+    <div class="nav-links">
+        <a href="#market">Market</a>
+        <a href="https://harita.boomifyp.com">Harita</a>
+        <a href="#kurallar">Kurallar</a>
+        <a href="#ekip">Ekip</a>
+        <a href="https://discord.gg/F2VQfSEmW" style="color: var(--discord);">Discord</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <img src="image_3944db.png" alt="BOOMIFYP" class="hero-img">
+    <h1 style="margin-top: 20px; font-weight: 300;">PREMIUM <b style="color: var(--gold);">SURVIVAL</b></h1>
+    <button class="ip-copy" onclick="copyIP()">PLAY.BOOMIFYP.COM</button>
+    <p style="margin-top: 15px; color: #888;">241 Oyuncu Aktif</p>
+</section>
+
+<section id="market">
+    <h2 class="title">MARKET</h2>
+    <div class="market-grid">
+        <div class="card">
+            <h2 style="color: #55ff55;">VIP</h2>
+            <div class="price">50₺</div>
+            <ul>
+                <li>[VIP] Tagı</li>
+                <li>Uçuş Modu (/fly)</li>
+                <li>VIP Özel Set</li>
+                <li>Renkli Sohbet</li>
+            </ul>
+            <button class="buy-btn" onclick="openBuy('VIP', '50')">SATIN AL</button>
+        </div>
+        <div class="card" style="border-color: var(--gold); border-width: 2px;">
+            <div style="position: absolute; top: 15px; right: -30px; background: var(--gold); color: #000; padding: 5px 40px; transform: rotate(45deg); font-size: 0.6rem; font-weight: 900;">POPÜLER</div>
+            <h2 style="color: var(--gold);">MVIP+</h2>
+            <div class="price">150₺</div>
+            <ul>
+                <li>Tüm VIP Özellikleri</li>
+                <li>İsim Değiştirme (/nick)</li>
+                <li>P5 Edit Setler</li>
+                <li>Dolu Sunucuya Giriş</li>
+            </ul>
+            <button class="buy-btn" onclick="openBuy('MVIP+', '150')">SATIN AL</button>
+        </div>
+        <div class="card">
+            <h2 style="color: #55ffff;">SUPREME</h2>
+            <div class="price">300₺</div>
+            <ul>
+                <li>[SUPREME] Efsane Tag</li>
+                <li>10 Adet Sethome</li>
+                <li>Anında Işınlanma</li>
+                <li>Tüm Kozmetikler</li>
+            </ul>
+            <button class="buy-btn" onclick="openBuy('SUPREME', '300')">SATIN AL</button>
+        </div>
+    </div>
+</section>
+
+<section id="kurallar">
+    <h2 class="title">KURALLAR</h2>
+    <div class="rules-grid">
+        <div class="rule-box">
+            <h3>SAYGI VE ADALET</h3>
+            <p style="font-size: 0.8rem; color: #888;">Oyunculara ve yetkililere küfür etmek, aşağılayıcı konuşmak kesinlikle yasaktır.</p>
+        </div>
+        <div class="rule-box">
+            <h3>HİLE VE MAKRO</h3>
+            <p style="font-size: 0.8rem; color: #888;">Hile kullanımı veya makro programları süresiz uzaklaştırma sebebidir.</p>
+        </div>
+        <div class="rule-box">
+            <h3>REKLAM VE SPAM</h3>
+            <p style="font-size: 0.8rem; color: #888;">Başka sunucu reklamı yapmak ve sohbeti kirletmek (spam) yasaktır.</p>
+        </div>
+        <div class="rule-box">
+            <h3>BUG KULLANIMI</h3>
+            <p style="font-size: 0.8rem; color: #888;">Oyun hatalarından faydalanmak yasaktır, hataları yetkililere bildirin.</p>
+        </div>
+    </div>
+</section>
+
+<section id="ekip">
+    <h2 class="title">EKİBİMİZ</h2>
+    <div class="team-container">
+        <div class="member">
+            <img src="https://i.hizliresim.com/rj4kquw.png" alt="Owner">
+            <p style="margin-top: 10px; font-weight: 800;">oksuzkaciran_12</p>
+            <span class="rank" style="background: #aa0000; color: #fff;">KURUCU</span>
+        </div>
+        <div class="member">
+            <img src="https://cdn.discordapp.com/attachments/1484595002389561438/1505296739106689254/60EF9287-7762-4BB8-BF70-3268A5006887.png?ex=6a0a1c55&is=6a08cad5&hm=18127c8047fde965fae6e06eaed3d3f6a97557c36992f8f64763dc0336ee9250&" alt="Admin">
+            <p style="margin-top: 10px; font-weight: 800;">xGHURx</p>
+            <span class="rank" style="background: #ff5555; color: #fff;">ADMİN</span>
+        </div>
+    </div>
+</section>
+
+<div id="buyModal" class="modal">
+    <div class="modal-content">
+        <h2 id="packName" style="font-family: 'Orbitron'; color: var(--gold);">PAKET</h2>
+        <p id="packPrice" style="margin-top: 10px; font-weight: bold;"></p>
+        
+        <div class="dc-user-box">
+            <p style="font-size: 0.8rem; color: #888;">Satın alım için iletişime geçin:</p>
+            <p style="font-size: 1.4rem; font-family: 'Orbitron'; color: var(--discord); margin-top: 5px;">@cvv_2</p>
+        </div>
+
+        <p style="font-size: 0.75rem; color: #555;">IBAN ve ödeme detayları Discord üzerinden verilecektir.</p>
+
+        <a href="https://discord.gg/YTyw3GsxQ8" target="_blank" class="dc-btn">DISCORD SUNUCUSUNA KATIL</a>
+        
+        <button onclick="closeModal()" style="background: none; border: none; color: #333; margin-top: 20px; cursor: pointer; font-weight: 800;">[ VAZGEÇ ]</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2026 BOOMIFYP | Profesyonel Minecraft Deneyimi</p>
+    <p style="font-size: 0.6rem; color: #222; margin-top: 5px;">Mojang AB ile bir bağımız yoktur.</p>
+</footer>
+
+<script>
+    function copyIP() {
+        navigator.clipboard.writeText("play.boomifyp.com");
+        alert("IP Adresi Kopyalandı! Sunucuda görüşürüz efsane.");
+    }
+
+    function openBuy(name, price) {
+        document.getElementById('buyModal').style.display = 'flex';
+        document.getElementById('packName').innerText = name + " PAKETİ";
+        document.getElementById('packPrice').innerText = price + " TL";
+    }
+
+    function closeModal() {
+        document.getElementById('buyModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('buyModal')) closeModal();
+    }
+</script>
+
+</body>
+</html>

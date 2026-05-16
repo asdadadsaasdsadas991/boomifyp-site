@@ -36,20 +36,20 @@
         .ip-copy:hover { transform: scale(1.1); box-shadow: 0 0 30px var(--gold); background: var(--gold); color: #000; }
 
         /* SECTIONS */
-        section { padding: 100px 10%; }
+        section { padding: 100px 5%; }
         .title { font-family: 'Orbitron'; font-size: 2.5rem; text-align: center; margin-bottom: 60px; letter-spacing: 5px; color: var(--gold); }
 
         /* MARKET */
-        .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 40px; border-radius: 25px; text-align: center; transition: 0.4s; backdrop-filter: blur(5px); position: relative; overflow: hidden; }
+        .market-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); border: 1px solid var(--border); padding: 30px 20px; border-radius: 25px; text-align: center; transition: 0.4s; backdrop-filter: blur(5px); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
         .card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 10px 40px rgba(255, 184, 0, 0.1); }
-        .card h2 { font-family: 'Orbitron'; margin-bottom: 15px; }
-        .price { font-size: 3rem; font-weight: 900; color: var(--gold); margin-bottom: 20px; }
-        .card ul { list-style: none; text-align: left; margin-bottom: 30px; }
-        .card ul li { margin-bottom: 10px; color: #bbb; display: flex; align-items: center; }
-        .card ul li::before { content: '◈'; color: var(--gold); margin-right: 10px; font-size: 0.8rem; }
+        .card h2 { font-family: 'Orbitron'; margin-bottom: 15px; font-size: 1.5rem; }
+        .price { font-size: 2.5rem; font-weight: 900; color: var(--gold); margin-bottom: 20px; }
+        .card ul { list-style: none; text-align: left; margin-bottom: 30px; font-size: 0.85rem; }
+        .card ul li { margin-bottom: 10px; color: #bbb; display: flex; align-items: flex-start; }
+        .card ul li::before { content: '◈'; color: var(--gold); margin-right: 8px; font-size: 0.7rem; top: 2px; position: relative; }
         
-        .buy-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; background: var(--gold); color: #000; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.3s; }
+        .buy-btn { width: 100%; padding: 15px; border-radius: 12px; border: none; background: var(--gold); color: #000; font-family: 'Orbitron'; font-weight: 900; cursor: pointer; transition: 0.3s; margin-top: auto; }
         .buy-btn:hover { letter-spacing: 2px; background: #fff; }
 
         /* KURALLAR */
@@ -101,40 +101,84 @@
 <section id="market">
     <h2 class="title">MARKET</h2>
     <div class="market-grid">
+        
+        <!-- DONATOR -->
+        <div class="card">
+            <h2 style="color: #e0e0e0;">DONATOR</h2>
+            <div class="price">50 Mercan ₺</div>
+            <ul>
+                <li>/kit donator ayrıcalığı</li>
+                <li>7/24 Aktif /afk komutu</li>
+                <li>Çift depo (/depo 2)</li>
+                <li>/evayarla ışınlanma avantajı (1 adet)</li>
+            </ul>
+            <button class="buy-btn" onclick="openBuy('DONATOR', '50')">SATIN AL</button>
+        </div>
+
+        <!-- VIP -->
         <div class="card">
             <h2 style="color: #55ff55;">VIP</h2>
-            <div class="price">50₺</div>
+            <div class="price">80 Mercan ₺</div>
             <ul>
-                <li>[VIP] Tagı</li>
-                <li>Uçuş Modu (/fly)</li>
-                <li>VIP Özel Set</li>
-                <li>Renkli Sohbet</li>
+                <li>/kit vip ayrıcalığı</li>
+                <li>/afk komutu</li>
+                <li>/depo 2 ve /depo 3 hakkı</li>
+                <li>2 Adet ev ayarlama hakkı</li>
+                <li>/reklam komutu ayrıcalığı</li>
             </ul>
-            <button class="buy-btn" onclick="openBuy('VIP', '50')">SATIN AL</button>
+            <button class="buy-btn" onclick="openBuy('VIP', '80')">SATIN AL</button>
         </div>
-        <div class="card" style="border-color: var(--gold); border-width: 2px;">
-            <div style="position: absolute; top: 15px; right: -30px; background: var(--gold); color: #000; padding: 5px 40px; transform: rotate(45deg); font-size: 0.6rem; font-weight: 900;">POPÜLER</div>
-            <h2 style="color: var(--gold);">MVIP+</h2>
-            <div class="price">150₺</div>
-            <ul>
-                <li>Tüm VIP Özellikleri</li>
-                <li>İsim Değiştirme (/nick)</li>
-                <li>P5 Edit Setler</li>
-                <li>Dolu Sunucuya Giriş</li>
-            </ul>
-            <button class="buy-btn" onclick="openBuy('MVIP+', '150')">SATIN AL</button>
-        </div>
+
+        <!-- VIP+ -->
         <div class="card">
-            <h2 style="color: #55ffff;">SUPREME</h2>
-            <div class="price">300₺</div>
+            <h2 style="color: #55ffff;">VIP+</h2>
+            <div class="price">100 Mercan ₺</div>
             <ul>
-                <li>[SUPREME] Efsane Tag</li>
-                <li>10 Adet Sethome</li>
-                <li>Anında Işınlanma</li>
-                <li>Tüm Kozmetikler</li>
+                <li>/kit vip+ ayrıcalığı</li>
+                <li>/afk komutu</li>
+                <li>/depo 2, 3 ve 4 ayrıcalığı</li>
+                <li>3 Adet ev ayarlama hakkı</li>
+                <li>/reklam komutu</li>
+                <li>/feed komutu ile açlık giderme</li>
             </ul>
-            <button class="buy-btn" onclick="openBuy('SUPREME', '300')">SATIN AL</button>
+            <button class="buy-btn" onclick="openBuy('VIP+', '100')">SATIN AL</button>
         </div>
+
+        <!-- MVIP -->
+        <div class="card">
+            <h2 style="color: #ff55ff;">MVIP</h2>
+            <div class="price">250 Mercan ₺</div>
+            <ul>
+                <li>/kit mvip+ ayrıcalığı</li>
+                <li>/afk komutu</li>
+                <li>/depo 2, 3, 4 ve 5 hakkı</li>
+                <li>4 Adet ev ayarlama hakkı</li>
+                <li>/reklam komutu</li>
+                <li>/feed komutu</li>
+                <li>/repair ile eşya tamir etme</li>
+                <li>Özel MVIP+ Bölgesi erişimi</li>
+            </ul>
+            <button class="buy-btn" onclick="openBuy('MVIP', '250')">SATIN AL</button>
+        </div>
+
+        <!-- BVIP -->
+        <div class="card" style="border-color: var(--gold); border-width: 2px;">
+            <div style="position: absolute; top: 15px; right: -30px; background: var(--gold); color: #000; padding: 5px 40px; transform: rotate(45deg); font-size: 0.6rem; font-weight: 900;">EN DEĞERLİ</div>
+            <h2 style="color: var(--gold);">BVIP</h2>
+            <div class="price">350 Mercan ₺</div>
+            <ul>
+                <li>/kit bvip+ ayrıcalığı</li>
+                <li>/afk komutu</li>
+                <li>5 Adet depo (/depo 1,2,3,4,5)</li>
+                <li>5 Adet ev ayarlama hakkı</li>
+                <li>/reklam komutu</li>
+                <li>/feed komutu</li>
+                <li>/repair ile eşya tamir etme</li>
+                <li>Özel BVIP+ Bölgesi erişimi</li>
+            </ul>
+            <button class="buy-btn" onclick="openBuy('BVIP', '350')">SATIN AL</button>
+        </div>
+
     </div>
 </section>
 
